@@ -15,6 +15,7 @@ sap.ui.define(
         onInit: function () {
           var oData = {
             oTableData : [],
+            mTableData : [],
             sSearchPlant : null,
             sSearchRoomid  : null,
             sSearchFloor : null,
@@ -48,6 +49,22 @@ sap.ui.define(
 
             }
           })
+          var oModel2 = this.getView().getModel();
+          var oViewModel2 = this.getView().getModel("Main")
+
+          oModel2.read("/RoomMaterialSet" , {
+            success: function(oModelData){
+              var data = oModelData; 
+              var aData = data.results;
+              var tpData = []; // roomtp 필터
+
+              tpData.push(aData);
+              oViewModel2.setProperty("/mTableData", aData);
+
+            }
+          })
+
+
         },
 
         onSearch: function() {
@@ -107,7 +124,9 @@ sap.ui.define(
           var oTable = this.getView().byId("RoomTable"); 
           var oBinding = oTable.getBinding("items"); 
 
-          var aFilter = [];
+          var oTable2 = this.getView().byId("mTable"); 
+          var oBinding2 = oTable2.getBinding("items"); 
+
           if(sSearchRoomtp){ // 룸타입
             var oFilter = new Filter ({
                 path : 'Roomtp', 
@@ -121,6 +140,7 @@ sap.ui.define(
           debugger;
 
           oBinding.filter(aFilter);       
+          oBinding2.filter(aFilter);  
 
           oFCL.setLayout(library.LayoutType.TwoColumnsBeginExpanded);
         },

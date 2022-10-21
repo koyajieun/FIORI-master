@@ -37,6 +37,7 @@
                     <ObjectPageSubSection>
                         <blocks>
                             <m:Text text="{app>/detail/Plant}" />
+                            <m:Text text="{app>/detail/Roomtp}" />
                             <!-- <m:VBox>
                                 <m:VBox>
                                     <m:Text text="기타"/>
@@ -50,11 +51,38 @@
                 </subSections>
             </ObjectPageSection>
 
+            
+
             <ObjectPageSection title="Suppliers">
                 <subSections>
                     <ObjectPageSubSection>
                         <blocks>
                             <m:VBox>
+
+                            <m:Table 
+                            id="mTable"
+                             items="{Main>/mTableData}" >
+                            <m:columns>
+                                <m:Column>
+                                    <m:Text text="객실타입" />
+                                </m:Column>
+
+                                <m:Column>
+                                    <m:Text text="제품명" />
+                                </m:Column>
+                            
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem type="Navigation" press=".onDetailListItemPress">
+                                    <m:cells>
+                                        <m:ObjectIdentifier text="{Roomtp}"></m:ObjectIdentifier>
+                                        <m:ObjectIdentifier text="{prod}"></m:ObjectIdentifier>
+                                    </m:cells>
+                                
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+                                
                                     <m:Text text="특이사항" />
                                     <m:TextArea 
                                     width="100%" 
@@ -73,24 +101,7 @@
 
                                     
                                 </m:VBox>
-                            <!-- <m:Table 
-                            id="suppliersTable"
-                            items="{ path: '/RoomstatusSet' }">
-                            <m:columns>
-                                <m:Column>
-                                    <m:Text text="특이사항" />
-                                </m:Column>
                             
-                            </m:columns>
-                            <m:items>
-                                <m:ColumnListItem type="Navigation" press=".onDetailListItemPress">
-                                    <m:cells>
-                                        <m:ObjectIdentifier text="{Note}"></m:ObjectIdentifier>
-                                    </m:cells>
-                                
-                                </m:ColumnListItem>
-                            </m:items>
-                        </m:Table> -->
                         </blocks>
                     </ObjectPageSubSection>
                 </subSections>
