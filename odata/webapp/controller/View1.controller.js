@@ -50,7 +50,7 @@ sap.ui.define(
             }
           })
           var oModel2 = this.getView().getModel();
-          var oViewModel2 = this.getView().getModel("Main")
+          var oViewModel2 = this.getView().getModel("all")
 
           oModel2.read("/RoomMaterialSet" , {
             success: function(oModelData){
@@ -120,27 +120,26 @@ sap.ui.define(
 
           var oViewModel = this.getView().getModel("app");
           var sSearchRoomtp = oViewModel.oData.detail.Roomtp //룸타입
-
+          
           var oTable = this.getView().byId("RoomTable"); 
           var oBinding = oTable.getBinding("items"); 
+          
+          // All Model을 가져온다.
+          var oAllModel = this.getView().getModel('all');
+          // All Model 안에 mTableData라는 속성을 가져온다.
+          // mTable은 위 onBeforeRendering에서 세팅한 데이터를 가지고 있다.
+          var oMTableData = oAllModel.getProperty('/mTableData');
 
-          var oTable2 = this.getView().byId("mTable"); 
-          var oBinding2 = oTable2.getBinding("items"); 
+          // mTable에 들어있던 데이터를 가진 변수 oMTableData는 Array (배열)이다.
+          // 배열의 내장메소드 filter 를 사용해서 반복문을 돌린다.
+          // filter로 item.Roomtp 와 sSearchRoomtp가 같은 object들을 [ {} ] 문으로 추출한다.
+          var aFilterData = oMTableData.filter(function(item) {
+            return item.Roomtp === sSearchRoomtp;
+          });
 
-          if(sSearchRoomtp){ // 룸타입
-            var oFilter = new Filter ({
-                path : 'Roomtp', 
-                operator: FilterOperator.Contains,
-                value1: sSearchRoomtp,
-                caseSensitive : false
-            });
-            aFilter.push(oFilter)
-          }
-
-          debugger;
-
-          oBinding.filter(aFilter);       
-          oBinding2.filter(aFilter);  
+          // 추출된 데이터를 filterMTable이라는 속성에 데이터를 저장한다.
+          oAllModel.setProperty('/filterMTable', aFilterData);
+  
 
           oFCL.setLayout(library.LayoutType.TwoColumnsBeginExpanded);
         },

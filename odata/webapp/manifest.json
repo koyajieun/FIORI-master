@@ -76,6 +76,9 @@
       },
       "app": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "all": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

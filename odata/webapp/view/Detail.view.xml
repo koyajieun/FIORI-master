@@ -61,7 +61,7 @@
 
                             <m:Table 
                             id="mTable"
-                             items="{Main>/mTableData}" >
+                             items="{all>/filterMTable}" >
                             <m:columns>
                                 <m:Column>
                                     <m:Text text="객실타입" />
@@ -75,8 +75,8 @@
                             <m:items>
                                 <m:ColumnListItem type="Navigation" press=".onDetailListItemPress">
                                     <m:cells>
-                                        <m:ObjectIdentifier text="{Roomtp}"></m:ObjectIdentifier>
-                                        <m:ObjectIdentifier text="{prod}"></m:ObjectIdentifier>
+                                        <m:ObjectIdentifier text="{all>Roomtp}"></m:ObjectIdentifier>
+                                        <m:ObjectIdentifier text="{all>prod}"></m:ObjectIdentifier>
                                     </m:cells>
                                 
                                 </m:ColumnListItem>
