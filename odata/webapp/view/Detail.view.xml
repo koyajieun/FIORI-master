@@ -70,13 +70,19 @@
                                 <m:Column>
                                     <m:Text text="제품명" />
                                 </m:Column>
+
+                                <m:Column>
+                                    <m:Text text="수량" />
+                                </m:Column>
+
                             
                             </m:columns>
                             <m:items>
-                                <m:ColumnListItem type="Navigation" press=".onDetailListItemPress">
+                                <m:ColumnListItem  >
                                     <m:cells>
                                         <m:ObjectIdentifier text="{all>Roomtp}"></m:ObjectIdentifier>
                                         <m:ObjectIdentifier text="{all>prod}"></m:ObjectIdentifier>
+                                        <m:ObjectIdentifier text="{all>Prodquan}"></m:ObjectIdentifier>
                                     </m:cells>
                                 
                                 </m:ColumnListItem>
