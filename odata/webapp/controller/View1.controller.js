@@ -68,15 +68,54 @@ sap.ui.define(
         },
 
         onSearch: function() {
-
-
+          var oViewModel = this.getView().getModel("Main");
+          var sSearchPlant = oViewModel.getProperty("/sSearchPlant"); //지점번호
+          var sSearchFloor = oViewModel.getProperty("/sSearchFloor"); //층수
+          var sSearchRoomid  = oViewModel.getProperty("/sSearchRoomid");//룸id
+          
+          var oTable = this.getView().byId("RoomTable"); 
+          var oBinding = oTable.getBinding("items"); 
+  
+          var aFilter = [];
+          if(sSearchPlant){ // 지점번호
+            var oFilter = new Filter ({
+                path : 'Plant', 
+                operator: FilterOperator.Contains,
+                value1: sSearchPlant,
+                caseSensitive : false
+            });
+            aFilter.push(oFilter)
+          }
+  
+          if(sSearchFloor){  // 층수
+            var oFilter = new Filter ({
+                path : 'Floor', 
+                operator: FilterOperator.Contains,
+                value1: sSearchFloor,
+                caseSensitive : false
+            });
+            aFilter.push(oFilter)
+          }
+  
+          if(sSearchRoomid){ // 룸 id 
+            var oFilter = new Filter ({
+                path : 'Roomid', 
+                operator: FilterOperator.Contains,
+                value1: sSearchRoomid,
+                caseSensitive : false
+            });
+            aFilter.push(oFilter)
+          }
+  
+          oBinding.filter(aFilter);
+  
         },
 
-        onFilterChange: function () {
+        onFilterChange : function () {
           this.onSearch();
         },
 
-        onPressSave: function(oEvent) {
+        onPressSave : function(oEvent) {
           var oViewModel = this.getView().getModel('app');
 
            var vPlant = oViewModel.oData.detail.Plant;
