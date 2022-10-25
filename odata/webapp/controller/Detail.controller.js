@@ -10,6 +10,11 @@ sap.ui.define(
     return Controller.extend("odata.controller.Detail", {
       onInit: function () {
 
+      },
+
+      onParentClicked: function (oEvent) {
+        var bSelected = oEvent.getParameter("selected");
+        this.oModel.setData({ child1: bSelected });
       }
       
     });

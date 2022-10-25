@@ -138,6 +138,7 @@
                         <ColumnListItem 
                         type="Navigation"
                         press=".onListItemPress">
+                        
                         <cells>
                             <ObjectIdentifier  title="{Main>Plant}"></ObjectIdentifier>
                         </cells>

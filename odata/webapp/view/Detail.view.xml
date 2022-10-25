@@ -60,9 +60,11 @@
                             <m:VBox>
 
                             <m:Table 
-                            id="mTable"
-                             items="{all>/filterMTable}" >
+                             id="mTable"
+                             items="{all>/filterMTable}" 
+                             mode="MultiSelect">
                             <m:columns>
+  
                                 <m:Column>
                                     <m:Text text="객실타입" />
                                 </m:Column>
@@ -79,6 +81,11 @@
                             </m:columns>
                             <m:items>
                                 <m:ColumnListItem  >
+                           
+                                  <m:cells>
+                                        <m:CheckBox />
+                                  </m:cells>
+
                                     <m:cells>
                                         <m:ObjectIdentifier text="{all>Roomtp}"></m:ObjectIdentifier>
                                         <m:ObjectIdentifier text="{all>prod}"></m:ObjectIdentifier>
